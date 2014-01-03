@@ -12,21 +12,21 @@ module DeviseAuthy
         )
       end
 
-      def verify_authy_form(&block)
-        form_tag([resource_name, :verify_authy], {:id => 'devise_authy', :method => :post}) do
+      def verify_authy_form(options={}, &block)
+        form_tag([resource_name, :verify_authy], {:id => 'devise_authy', :method => :post, :class => options[:class]}) do
           buffer = hidden_field_tag(:"#{resource_name}_id", @resource.id)
           buffer << capture(&block)
         end
       end
 
-      def enable_authy_form(&block)
-        form_tag([resource_name, :enable_authy], :method => :post) do
+      def enable_authy_form(options={}, &block)
+        form_tag([resource_name, :enable_authy], :method => :post, :class => options[:class]) do
           capture(&block)
         end
       end
 
-      def verify_authy_installation_form(&block)
-        form_tag([resource_name, :verify_authy_installation], :method => :post) do
+      def verify_authy_installation_form(options={}, &block)
+        form_tag([resource_name, :verify_authy_installation], :method => :post, :class => options[:class]) do
           capture(&block)
         end
       end
